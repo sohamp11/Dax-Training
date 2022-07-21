@@ -3,7 +3,7 @@ from django.db import models
 from django.utils import timezone
 
 class Post(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    id=models.AutoField(primary_key=True)
     note_title = models.CharField(max_length=200)
     details = models.TextField()
     date = models.DateTimeField(default=timezone.now)
