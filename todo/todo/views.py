@@ -23,20 +23,14 @@ def delete(request,id):
     return redirect(post_list)
 
 def update(request,id):
-    # task = Post.objects.filter(id=pk)
-
-    # note = Post()
-    # user = User.objects.get(username="spatil")
-    # note.author = user
-    # print('In update')
-    notes = Post.objects.get(id = id)
-    print(notes)
-    notes.title = request.POST.get('title')
-    notes.details = request.POST.get('details')
-    notes.save()
-    # return redirect(post_list)
     
-    #return ''
-    #todos = Post.objects.filter(id=id)
-    #return render(request, 'update.html', {'todos' : todos})
-# Create your views here.
+    if request.method == 'POST':
+        db= Post()
+        db.id=id
+        db.note_title = request.POST.get('title')
+        db.details = request.POST.get('details')
+        db.save()
+        return redirect(post_list)
+
+    notes = Post.objects.filter(id = id)
+    return render(request,'todo/update.html',{'title':notes[0].note_title,'details':notes[0].details})
