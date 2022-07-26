@@ -1,0 +1,16 @@
+
+select CustomerId,FirstName,LastName,City from Customers where SUBSTRING(FirstName,1,1) = 'N' OR City = "Berlin";
+
+select TrackId,Name,Composer,UnitPrice from tracks where ((UnitPrice BETWEEN 0.1 AND 1) AND (Name NOT LIKE '%T%'));
+
+select InvoiceDate,SUM(Total) as InvoiceSum From invoices where InvoiceDate BETWEEN '2013-06-01' AND '2013-06-30' GROUP BY InvoiceDate;
+
+select TrackId, Sum(Quantity) from invoice_items Group By TrackId Order By count(TrackId) DESC;
+
+select artists.ArtistId,artists.Name from artists where ArtistId NOT IN 
+    (select ArtistId from albums JOIN tracks on albums.AlbumId = tracks.AlbumId
+    JOIN playlist_track on tracks.TrackId = playlist_track.TrackId);
+    
+
+select albums.AlbumId,albums.Title, from albums where AlbumId IN
+    (select AlbumId from tracks JOIN 
