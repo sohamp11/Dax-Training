@@ -162,14 +162,33 @@ vector <string> readFile(const string& fileName){
 }
 int main(int argc, char ** argv)
 {
-    string inputFile(argv[1]);
-    vector <string> fileData = readFile(inputFile);
+    vector <string> fileData;
+
+    if(argv[1]){
+    string inputFile(argv[2]);
+     fileData = readFile(inputFile);
+    }
+    string format=" ";
+    
+
+    if(argv[3]){
+        format = argv[4];
+    }
+    
+
     // // Check vector
     Data d1(fileData);
     // d1.viewdata();
-    d1.env_format();
-    d1.fixed_format();
+
+    if(format=="envelope"){
+        d1.env_format();
+    }
+    else if (format=="fixed_length"){
+        d1.fixed_format();
+    }
+    else{
     d1.fixed_format_csv();
+    }
 
    
 return 0;
