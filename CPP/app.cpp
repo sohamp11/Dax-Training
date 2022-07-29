@@ -57,7 +57,7 @@ class Data{
 
                 string name=fName+" "+ lName;
                 string address1= HNo + " " + streetAdd;
-                string address2 = city_name + " " + state_name + " "+ zipCode;
+                string address2 = city_name + ", " + state_name + " "+ zipCode;
 
                 vector<string> dump;
                 dump.push_back(name);
@@ -73,8 +73,13 @@ class Data{
     void env_format(){
         vector<vector<string>> read = getData();
         for(vector<string> vac : read){
-            for(string a : vac){
-                cout << a << "\n";
+            for(int a =0;a<vac.size();a++){
+
+                cout << vac[a];
+                if(a!=2){
+                    cout<<",";
+                }
+                cout<<endl;
             }
            
         }
@@ -97,14 +102,14 @@ class Data{
                 case 0:
                     cout<< sec<< " ";
                     len = sec.length();
-                    for(int i=0;i<30-sec.length()-1;i++){
+                    for(int i=0;i<30-sec.length();i++){
                         cout<<" ";
                     }
                     break;
                 case 1:
                     cout<< sec<< " ";
                     len = sec.length();
-                    for(int i=0;i<25-sec.length()-1;i++){
+                    for(int i=0;i<25-sec.length();i++){
                         cout<<" ";
                     }
                     break;
@@ -112,7 +117,7 @@ class Data{
                 case 2:
                     cout<< sec<< " ";
                     len = sec.length();
-                    for(int i=0;i<36-sec.length()-2;i++){
+                    for(int i=0;i<36-sec.length();i++){
                         cout<<" ";
                     }
                     break;
@@ -122,6 +127,25 @@ class Data{
         }
         cout<<endl;
     }
+    }
+
+    void fixed_format_csv()
+    {
+        cout<<"Fixed CSV";
+        cout<<endl;
+        vector<vector<string>> read = getData();
+        for(vector<string> vac : read){
+            for(int a =0;a<vac.size();a++){
+
+                cout << vac[a];
+                if(a!=2){
+                    cout<<",";
+                }
+                
+            }
+           
+        }
+
     }
 };
 
@@ -145,6 +169,7 @@ int main(int argc, char ** argv)
     // d1.viewdata();
     d1.env_format();
     d1.fixed_format();
+    d1.fixed_format_csv();
 
    
 return 0;
